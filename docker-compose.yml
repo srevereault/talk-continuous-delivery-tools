@@ -1,0 +1,35 @@
+traefik:
+  container_name: traefik
+  image: containous/traefik
+  ports: 
+    - 8080:8080
+    - 80:80
+  volumes: 
+    - ./reverse-proxy/traefik.toml:/etc/traefik/traefik.toml
+    - /var/run/docker.sock:/var/run/docker.sock
+
+gogs: 
+  container_name: gogs
+  image: gogs/gogs
+  labels:
+    - traefik.backend=gogs
+    - traefik.port=3000
+    - traefik.frontend.rule=PathPrefixStrip
+    - traefik.frontend.value=/gogs
+    - traefik.frontend.passHostHeader=true
+  volumes:
+    - ./gogs/data/gogs/conf:/data/gogs/conf
+
+jenkins: 
+  container_name: jenkins
+  image: my-jenkins
+  command: --prefix=/jenkins
+  labels:
+    - traefik.backend=jenkins
+    - traefik.port=8080
+    - traefik.frontend.rule=PathPrefix
+    - traefik.frontend.value=/jenkins
+    - traefik.frontend.passHostHeader=true
+  links:
+    - traefik:ci-tools
+
