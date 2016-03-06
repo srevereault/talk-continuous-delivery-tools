@@ -8,6 +8,11 @@ traefik:
     - ./reverse-proxy/traefik.toml:/etc/traefik/traefik.toml
     - /var/run/docker.sock:/var/run/docker.sock
 
+gogs-data:
+  container_name: gogs-data
+  image: gogs/gogs
+  command: echo 'data-container for gogs'
+
 gogs: 
   container_name: gogs
   image: gogs/gogs
@@ -17,12 +22,34 @@ gogs:
     - traefik.frontend.rule=PathPrefixStrip
     - traefik.frontend.value=/gogs
     - traefik.frontend.passHostHeader=true
+  volumes_from: 
+    - gogs-data
   volumes:
     - ./gogs/data/gogs/conf:/data/gogs/conf
 
+
+nexus-data:
+  container_name: nexus-data
+  image: alpine
+  command: echo 'data-container for nexus'
+
+nexus: 
+  container_name: nexus
+  image: sonatype/nexus
+  volumes_from: 
+    - nexus-data
+  environment: 
+    - CONTEXT_PATH=/nexus
+  labels:
+    - traefik.backend=nexus
+    - traefik.port=8081
+    - traefik.frontend.rule=PathPrefix
+    - traefik.frontend.value=/nexus
+    - traefik.frontend.passHostHeader=true
+
 jenkins: 
   container_name: jenkins
-  image: my-jenkins
+  build: ./jenkins
   command: --prefix=/jenkins
   labels:
     - traefik.backend=jenkins

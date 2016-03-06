@@ -1,31 +1,9 @@
 logLevel="debug"
 
-[frontends]
-  [frontends.gogs]
-  backend="gogs"
-    rule="Path"
-    value="/gogs"
-
-
 [docker]
-
-# Docker server endpoint. Can be a tcp or a unix socket endpoint.
-#
-# Required
-#
 endpoint = "unix:///var/run/docker.sock"
-
-# Default domain used.
-# Can be overridden by setting the "traefik.domain" label on a container.
-#
-# Required
-#
 domain = "docker.localhost"
-
-# Enable watch docker changes
-#
-# Optional
-#
 watch = true
+
 [web]
 address = ":8080"
