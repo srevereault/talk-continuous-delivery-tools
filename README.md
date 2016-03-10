@@ -4,26 +4,12 @@
 ## Installation des pré-requis sur la vm
 
  + sudo apt-get update
- + sudo apt-get install -y git docker-engine
- + sudo apt-get install apt-transport-https ca-certificates
- + sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
- + sudo sh -c "cat >> /etc/apt/sources.list.d/docker.list << EOF
-deb https://apt.dockerproject.org/repo ubuntu-trusty main
-EOF
-"
- + sudo apt-get update
- + sudo apt-get purge lxc-docker
- + sudo apt-cache policy docker-engine
- + sudo apt-get install -y docker-engine
- + sudo groupadd docker
- + sudo gpasswd -a ${USER} docker
- + sudo sh -c "curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
- + sudo chmod +x /usr/local/bin/docker-compose
-
-## Clone des repos
-
+ + sudo apt-get install -y git
  + git clone https://github.com/ZenikaOuest/talk-continuous-delivery-app.git
  + git clone https://github.com/ZenikaOuest/talk-continuous-delivery-tools.git
+ + cd talk-continuous-delivery-tools
+ + sudo ./bootsrap.sh
+ + exit
 
 ## Démarrage de la stack
 
