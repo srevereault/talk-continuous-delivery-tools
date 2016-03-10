@@ -2,3 +2,8 @@ icon-shim:2.0.3
 git-client:1.19.5
 scm-api:1.0
 git:2.4.2
+maven-plugin:2.12.1
+javadoc:1.0
+mailer:1.7
+token-macro:1.1
+junit:1.6
