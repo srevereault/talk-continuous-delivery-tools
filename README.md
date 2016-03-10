@@ -3,17 +3,17 @@
 
 ## Installation des pré-requis sur la vm
 
- + sudo apt-get update
- + sudo apt-get install -y git
- + git clone https://github.com/ZenikaOuest/talk-continuous-delivery-app.git
- + git clone https://github.com/ZenikaOuest/talk-continuous-delivery-tools.git
- + cd talk-continuous-delivery-tools
- + sudo ./bootsrap.sh
- + exit
+    sudo apt-get update
+    sudo apt-get install -y git
+    git clone https://github.com/ZenikaOuest/talk-continuous-delivery-app.git
+    git clone https://github.com/ZenikaOuest/talk-continuous-delivery-tools.git
+    cd talk-continuous-delivery-tools
+    sudo ./bootstrap.sh
+    exit
 
-## Démarrage de la stack
+## Démarrage de la stack
 
-    docker-compose up -d
+    cd talk-continuous-delivery-tools && docker-compose up -d
 
 ## Configuration de gogs
 
