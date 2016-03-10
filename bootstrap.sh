@@ -16,7 +16,7 @@ apt-get purge lxc-docker
 apt-cache policy docker-engine
 apt-get install -y docker-engine
 groupadd docker || true
-gpasswd -a ${USER} docker
+gpasswd -a $(logname) docker
 
 echo "Installing docker-compose..."
 curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s-uname -m` > /usr/local/bin/docker-compose
