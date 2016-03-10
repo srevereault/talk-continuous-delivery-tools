@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-[ "$(id -u)" == "0" ] || echo "Must be root" && exit 1
+[ "$(id -u)" == "0" ] || (echo "Must be root" && exit 1)
 
 echo "I am confortable, and you ?"
 echo "Installing docker..."
