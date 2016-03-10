@@ -15,7 +15,7 @@ apt-get update
 apt-get purge lxc-docker
 apt-cache policy docker-engine
 apt-get install -y docker-engine
-groupadd docker
+groupadd docker || true
 gpasswd -a ${USER} docker
 
 echo "Installing docker-compose..."
